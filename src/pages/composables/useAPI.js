@@ -9,17 +9,18 @@ const movie = ref();
 const api = axios.create({
   baseURL: "https://the-one-api.dev/v2/",
   headers: {
-    Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
+    Authorization: "Bearer t-SXUBHoGd5RNoVrRbrR",
+    //getting error when trying vite key, have tried front ticks and ', neither work
   },
 });
 
-export const useAPI = (id) => {
+export const useAPI = () => {
   const getMovies = async () => {
     const response = await api.get("movie");
     movies.value = response.data.docs;
   };
 
-  const getMovie = async () => {
+  const getMovie = async (id) => {
     const response = await api.get(`movie/${id}`);
     movie.value = response.data.docs[0];
   };
