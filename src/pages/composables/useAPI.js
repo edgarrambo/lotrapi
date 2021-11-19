@@ -3,6 +3,7 @@ import axios from "axios";
 
 const movies = ref();
 const movie = ref();
+const quotes = ref();
 
 // here we need the access token code from the website we signed up for.
 // we also need the link for the api calls
@@ -25,6 +26,11 @@ export const useAPI = () => {
     movie.value = response.data.docs[0];
   };
 
+  const getQuotes = async (id) => {
+    const response = await api.get(`movie/${id}/quote?limit=10`);
+    quotes.value = response.data.docs;
+  };
+
   getMovies();
-  return { movies, movie, getMovies, getMovie };
+  return { movies, movie, quotes, getMovies, getMovie, getQuotes };
 };

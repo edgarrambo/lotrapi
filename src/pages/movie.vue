@@ -7,8 +7,9 @@ const route = useRoute();
 
 const { id } = route.params;
 
-const { movie, getMovie } = useAPI();
+const { movie, getMovie, quotes, getQuotes } = useAPI();
 getMovie(id);
+getQuotes(id);
 </script>
 
 <template>
@@ -21,5 +22,12 @@ class="max-w-md py-8 mx-auto mt-16 text-center bg-white rounded-lg">
 <p>Acadey Awards: {{ movie.academyAwardWin }}</p>
 <p>Rotten Tomatoes: {{ movie.rottenTomatoesScore }}</p>
 </div>
-<div v-else></div>         
+<div v-else>Loading...</div>         
+<div class="max-w-md py-8 mx-auto mt-16 text-center bg-white rounded-lg">
+    <h3 class="text-xl font-semibold tracking-tight">Memorable Quotes from {{movie.name}}</h3>
+    <p v-for="quote in quotes"
+    :key="quote._id"
+    >{{ quote.dialog }}</p>
+
+</div>
 </template>
