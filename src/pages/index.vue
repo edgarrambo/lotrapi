@@ -1,6 +1,7 @@
 <script setup>
 import { useAPI } from "./composables/useAPI";
-const { movies, getMovies }= useAPI();
+const { movies, movie, getMovies }= useAPI();
+movie.value = "";
 </script>
 
 <template>
